@@ -27,6 +27,7 @@
             system = "x86_64-linux";
             modules = [
               (nixpkgsWithOverlays system [ ])
+              ./cachix.nix
               ./hardware/lenovo-l380-yoga.nix
 
               ./modules/nix.nix
