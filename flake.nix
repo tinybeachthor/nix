@@ -19,6 +19,9 @@
           self.overlay.${system}
         ];
       });
+    })
+    //
+    {
       nixosConfigurations =
         let
           nixpkgsWithOverlays = system: flakes: {
@@ -33,7 +36,7 @@
             nix.registry.pkgs.flake = self;
           };
         in {
-          ALBATROSS = nixpkgs.lib.nixosSystem {
+          ALBATROSS = nixpkgs.lib.nixosSystem rec {
             system = "x86_64-linux";
             modules = [
               (nixpkgsWithOverlays system [ self ])
@@ -83,5 +86,5 @@
             ];
           };
         };
-    });
+    };
 }
