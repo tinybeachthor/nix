@@ -58,6 +58,30 @@
               })
             ];
           };
+          PELICAN = nixpkgs.lib.nixosSystem rec {
+            system = "x86_64-linux";
+            modules = [
+              (nixpkgsWithOverlays system [ self ])
+              ./cachix.nix
+              ./hardware/framework.nix
+
+              ./modules/nix.nix
+              ./modules/powersave.nix
+              ./modules/hibernate.nix
+              ./modules/i3.nix
+              ./modules/brightness.nix
+              ./modules/sound.nix
+              ./modules/fonts.nix
+              ./modules/env.nix
+
+              home-manager.nixosModules.home-manager
+              ./users
+              ({
+                networking.hostName = "PELICAN";
+                time.timeZone       = "America/Los_Angeles";
+              })
+            ];
+          };
         };
     });
 }
