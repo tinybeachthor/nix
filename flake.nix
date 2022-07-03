@@ -41,6 +41,7 @@
               ./modules/docker.nix
 
               home-manager.nixosModules.home-manager
+              ./users
               ({
                 networking.hostName = "ALBATROSS";
                 time.timeZone       = "America/Los_Angeles";
