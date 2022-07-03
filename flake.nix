@@ -10,6 +10,15 @@
 
   outputs = { self, flake-utils, nixpkgs, home-manager }:
     flake-utils.lib.eachDefaultSystem (system: {
+      overlay = final: prev: (import ./pkgs {
+        pkgs = prev;
+      });
+      packages = (import nixpkgs {
+        inherit system;
+        overlays = [
+          self.overlay.${system}
+        ];
+      });
       nixosConfigurations =
         let
           nixpkgsWithOverlays = system: flakes: {
@@ -18,15 +27,16 @@
                 allowUnfree = true;
                 allowBroken = false;
               };
-              overlays = map (flake: (final: prev: flake.packages.${system})) flakes;
+              overlays = map (flake: flake.overlay.${system}) flakes;
             };
             nix.registry.nixpkgs.flake = nixpkgs;
+            nix.registry.pkgs.flake = self;
           };
         in {
           ALBATROSS = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-              (nixpkgsWithOverlays system [ ])
+              (nixpkgsWithOverlays system [ self ])
               ./cachix.nix
               ./hardware/lenovo-l380-yoga.nix
 
