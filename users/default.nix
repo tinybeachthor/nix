@@ -51,6 +51,8 @@
       programs = {
         nix-index.enable = true;
 
+        ssh.enable = true;
+
         i3status-rust = import ./martin/i3status-rust.nix { inherit config; };
 
         zsh = import ./martin/zsh.nix { inherit pkgs; };
