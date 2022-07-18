@@ -45,7 +45,7 @@
     {
       xresources.properties = import ./martin/xresources.nix;
 
-      xsession.windowManager.i3 = import ./martin/i3.nix { inherit pkgs; };
+      xsession.windowManager.i3 = import ./martin/i3.nix { inherit config pkgs; };
       xdg.configFile."i3/lock.sh".source = "${lock}/bin/lock.sh";
 
       programs = {
@@ -85,7 +85,7 @@
             gitProtocol = "ssh";
           };
         };
-        alacritty = import ./martin/alacritty.nix { inherit pkgs; };
+        alacritty = import ./martin/alacritty.nix { inherit config pkgs; };
 
         neomutt = { enable = true; vimKeys = true; };
         mbsync = { enable = true; };

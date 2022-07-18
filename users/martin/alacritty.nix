@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   settings = {
@@ -32,7 +32,10 @@ let
         family = "Hack";
         style = "Bold";
       };
-      size = 12;
+      size =
+        if config.hardware.video.hidpi.enable
+        then 15
+        else 12;
       offset = {
         x = 0;
         y = 0;

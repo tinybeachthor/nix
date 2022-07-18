@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   enable = true;
@@ -18,7 +18,10 @@
     fonts = {
       names = [ "pango:DejaVu Sans Mono" "FontAwesome" ];
       style = "Bold Semi-Condensed";
-      size = 11.0;
+      size =
+        if config.hardware.video.hidpi.enable
+        then 13.0
+        else 11.0;
     };
     colors = {
       background = "#000000";
