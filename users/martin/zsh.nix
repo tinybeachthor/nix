@@ -11,7 +11,7 @@
 
   history = {
     size = 100000;
-    path = ".histfile";
+    path = "/home/martin/.histfile";
     ignoreDups = true;
     expireDuplicatesFirst = true;
     share = true;
