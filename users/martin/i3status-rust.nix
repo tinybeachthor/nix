@@ -7,6 +7,29 @@ let
     format = "{running}/{total}/{images}";
   };
 
+  diskBlock = if config.networking.hostName == "ALBATROSS" then [
+    {
+      block = "disk_space";
+      path = "/nix";
+      format = "N {available}";
+      interval = 60;
+    }
+    {
+      block = "disk_space";
+      path = "/";
+      format = "/ {available}";
+      interval = 60;
+    }
+  ]
+  else [
+    {
+      block = "disk_space";
+      path = "/";
+      format = "/ {available}";
+      interval = 60;
+    }
+  ];
+
 in
 {
   enable = true;
@@ -31,25 +54,14 @@ in
         player = "spotify";
         marquee = false;
         smart_trim = true;
-        max_width = 32;
+        max_width = if config.hardware.video.hidpi.enable then 64 else 32;
         buttons = ["prev" "play" "next"];
         hide_when_empty = true;
       }
     ] ++
     (if config.virtualisation.docker.enable then [dockerBlock] else []) ++
+    diskBlock ++
     [
-      {
-        block = "disk_space";
-        path = "/nix";
-        format = "N {available}";
-        interval = 60;
-      }
-      {
-        block = "disk_space";
-        path = "/";
-        format = "/ {available}";
-        interval = 60;
-      }
       {
         block = "memory";
         display_type = "memory";
@@ -66,7 +78,9 @@ in
       }
       {
         block = "net";
-        device = "wlp2s0";
+        device =
+          if config.networking.hostName == "PELICAN"
+          then "wlp170s0" else "wlp2s0";
         interval = 5;
         format = "{signal_strength} {ssid} {ip}";
       }

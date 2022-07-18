@@ -14,6 +14,8 @@
       touchpad = {
         naturalScrolling = true;
         disableWhileTyping = true;
+        tapping = true;
+        clickMethod = "clickfinger";
       };
     };
     synaptics.enable = false;

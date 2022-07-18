@@ -13,7 +13,7 @@
   };
   environment.etc."systemd/sleep.conf".text = ''
     [Sleep]
-    HibernateDelaySec=1h
+    HibernateDelaySec=30m
   '';
 
   environment.systemPackages = with pkgs; [

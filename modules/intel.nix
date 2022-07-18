@@ -1,10 +1,14 @@
 { config, pkgs, ... }:
 
 {
+  boot.initrd.availableKernelModules = [
+    "aesni_intel"
+  ];
   boot.kernelModules = [
     "i915" 		  # intel graphics
     "kvm-intel"	# kernel-based virtual machine
     "coretemp"	# intel cpu temperature reading
+    "aesni_intel"
   ];
 
   hardware = {
