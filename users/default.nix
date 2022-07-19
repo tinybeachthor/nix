@@ -51,7 +51,15 @@
       programs = {
         nix-index.enable = true;
 
-        ssh.enable = true;
+        ssh = {
+          enable = true;
+          matchBlocks = {
+            "github.com" = {
+              identityFile = "/home/martin/.ssh/github@${config.networking.hostName}";
+              identitiesOnly = true;
+            };
+          };
+        };
 
         i3status-rust = import ./martin/i3status-rust.nix { inherit config; };
 
