@@ -38,6 +38,30 @@
         "type": "github"
       }
     },
+    "nix-index-db": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1660766740,
+        "narHash": "sha256-8rzfXttTPgAybQJGS8SU13zLJ+83eCl+692hX11TF4U=",
+        "owner": "usertam",
+        "repo": "nix-index-db",
+        "rev": "f4d4d9d7e50b3cedc02b39abe9b0bd1a49235402",
+        "type": "github"
+      },
+      "original": {
+        "owner": "usertam",
+        "ref": "standalone/master",
+        "repo": "nix-index-db",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1656679828,
@@ -58,6 +82,7 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "nix-index-db": "nix-index-db",
         "nixpkgs": "nixpkgs"
       }
     },

@@ -1,3 +1,4 @@
+{ nix-index-db, system }:
 { config, pkgs, ... }:
 
 {
@@ -41,12 +42,15 @@
     let
       lock = pkgs.writeShellScriptBin "lock.sh"
         (builtins.readFile ./martin/lock.sh);
+      nix-index-bin = nix-index-db.packages.${system}.default;
     in
     {
       xresources.properties = import ./martin/xresources.nix;
 
       xsession.windowManager.i3 = import ./martin/i3.nix { inherit config pkgs; };
       xdg.configFile."i3/lock.sh".source = "${lock}/bin/lock.sh";
+
+      home.file.".cache/nix-index/files".source = nix-index-bin;
 
       programs = {
         nix-index.enable = true;

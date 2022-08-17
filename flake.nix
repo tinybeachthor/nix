@@ -6,9 +6,14 @@
       url = github:rycee/home-manager/master;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-db = {
+      url = "github:usertam/nix-index-db/standalone/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
-  outputs = { self, flake-utils, nixpkgs, home-manager }:
+  outputs = { self, flake-utils, nixpkgs, home-manager, nix-index-db }:
     flake-utils.lib.eachDefaultSystem (system: {
       overlay = final: prev: (import ./pkgs {
         pkgs = prev;
@@ -54,7 +59,7 @@
               ./modules/docker.nix
 
               home-manager.nixosModules.home-manager
-              ./users
+              (import ./users { inherit nix-index-db system; })
               ({
                 networking.hostName = "ALBATROSS";
                 time.timeZone       = "America/Los_Angeles";
@@ -78,7 +83,7 @@
               ./modules/env.nix
 
               home-manager.nixosModules.home-manager
-              ./users
+              (import ./users { inherit nix-index-db system; })
               ({
                 networking.hostName = "PELICAN";
                 time.timeZone       = "America/Los_Angeles";
