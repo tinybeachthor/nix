@@ -97,6 +97,10 @@
           path = ./templates/shell;
           description = "Minimal dev shell flake.";
         };
+        jupyter-python = {
+          path = ./templates/jupyter-python;
+          description = "Jupyter notebook for python.";
+        };
         default = shell;
       };
     };
