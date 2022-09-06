@@ -91,5 +91,13 @@
             ];
           };
         };
+
+      templates = rec {
+        shell = {
+          path = ./templates/shell;
+          description = "Minimal dev shell flake.";
+        };
+        default = shell;
+      };
     };
 }
