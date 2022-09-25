@@ -5,11 +5,11 @@
     home-manager = {
       url = github:rycee/home-manager/master;
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     nix-index-db = {
       url = "github:usertam/nix-index-db/standalone/master";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
   };
 
