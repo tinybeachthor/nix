@@ -38,6 +38,7 @@
         file
         findutils
         ripgrep
+        jq
         vifm
 
         wget

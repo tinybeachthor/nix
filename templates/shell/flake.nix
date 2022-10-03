@@ -17,8 +17,8 @@
       devShell = forAllSystems (system: let
         pkgs = nixpkgsFor.${system};
       in
-        mkShell {
-          buildInputs = [
+        pkgs.mkShell {
+          buildInputs = with pkgs; [
             git
           ];
         }
