@@ -46,11 +46,18 @@
     in
     {
       xresources.properties = import ./martin/xresources.nix;
-
       xsession.windowManager.i3 = import ./martin/i3.nix { inherit config pkgs; };
       xdg.configFile."i3/lock.sh".source = "${lock}/bin/lock.sh";
 
       home.file.".cache/nix-index/files".source = nix-index-bin;
+
+      services = {
+        udiskie = {
+          enable = true;
+          automount = true;
+          notify = false;
+        };
+      };
 
       programs = {
         nix-index.enable = true;
