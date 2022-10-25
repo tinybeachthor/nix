@@ -3,7 +3,7 @@
     flake-utils.url = github:numtide/flake-utils/master;
     nixpkgs.url = github:NixOS/nixpkgs/nixos-22.05;
     home-manager = {
-      url = github:rycee/home-manager/master;
+      url = github:rycee/home-manager/release-22.05;
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
