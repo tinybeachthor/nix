@@ -57,6 +57,7 @@
           automount = true;
           notify = false;
         };
+        network-manager-applet.enable = true;
       };
 
       programs = {
