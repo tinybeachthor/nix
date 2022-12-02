@@ -1,4 +1,4 @@
-{ config }:
+{ config, lib }:
 
 let
   dockerBlock = {
@@ -59,7 +59,7 @@ in
         hide_when_empty = true;
       }
     ] ++
-    (if config.virtualisation.docker.enable then [dockerBlock] else []) ++
+    (lib.optional config.virtualisation.docker.enable dockerBlock) ++
     diskBlock ++
     [
       {
@@ -77,12 +77,9 @@ in
         critical = 90;
       }
       {
-        block = "net";
-        device =
-          if config.networking.hostName == "PELICAN"
-          then "wlp170s0" else "wlp2s0";
-        interval = 5;
-        format = "{signal_strength} {ssid} {ip}";
+        block = "networkmanager";
+        on_click = "alacritty -e nmtui";
+        ap_format = "{ssid^10} {strength}";
       }
       {
         block = "sound";
