@@ -1,11 +1,10 @@
 {
   inputs = {
     flake-utils.url = github:numtide/flake-utils/master;
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-22.05;
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
     home-manager = {
-      url = github:rycee/home-manager/release-22.05;
+      url = github:rycee/home-manager/release-22.11;
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
     nix-index-db = {
       url = "github:usertam/nix-index-db/standalone/master";
@@ -15,18 +14,19 @@
 
   outputs = { self, flake-utils, nixpkgs, home-manager, nix-index-db }:
     flake-utils.lib.eachDefaultSystem (system: {
-      overlay = final: prev: (import ./pkgs {
-        pkgs = prev;
-      });
       packages = (import nixpkgs {
         inherit system;
         overlays = [
-          self.overlay.${system}
+          self.overlays.default
         ];
       });
     })
     //
     {
+      overlays.default = final: prev: (import ./pkgs {
+        pkgs = prev;
+      });
+
       nixosConfigurations =
         let
           nixpkgsWithOverlays = system: flakes: {
@@ -35,7 +35,7 @@
                 allowUnfree = true;
                 allowBroken = false;
               };
-              overlays = map (flake: flake.overlay.${system}) flakes;
+              overlays = map (flake: flake.overlays.default) flakes;
             };
             nix.registry.nixpkgs.flake = nixpkgs;
             nix.registry.pkgs.flake = self;

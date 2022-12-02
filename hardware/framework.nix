@@ -73,7 +73,7 @@
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 
-  nix.maxJobs = lib.mkDefault 8;
+  nix.settings.max-jobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   # This value determines the NixOS release from which the default

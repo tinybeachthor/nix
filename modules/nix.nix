@@ -14,13 +14,9 @@
     max-free = ${toString (1024 * 1024 * 1024)}
   '';
 
-  # Binary caches
-  nix.binaryCachePublicKeys = [
-  "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-  ];
-  nix.binaryCaches = [
-    "https://hydra.iohk.io"
-  ];
+  nix.settings = {
+    auto-optimise-store = true;
+  };
 
   # Garbage collect old generations
   nix.gc = {
@@ -28,7 +24,4 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
-
-  # AutoOptimiseStore
-  nix.autoOptimiseStore = true;
 }
