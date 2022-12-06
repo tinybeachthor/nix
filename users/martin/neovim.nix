@@ -9,7 +9,6 @@
 
   withRuby = true;
   withPython3 = true;
-  extraPython3Packages = p: with p; [ jedi ];
   withNodeJs = true;
 
   extraConfig = builtins.readFile ./neovim.vim;
@@ -17,164 +16,11 @@
   extraPackages = with pkgs; [
     git
 
-    # fzf-vim
     fzf
     ripgrep
     bat
     delta
   ];
-
-  coc = {
-    enable = true;
-    package = pkgs.vimUtils.buildVimPluginFrom2Nix {
-      pname = "coc.nvim";
-      version = "2022-05-21";
-      src = pkgs.fetchFromGitHub {
-        owner = "neoclide";
-        repo = "coc.nvim";
-        rev = "791c9f673b882768486450e73d8bda10e391401d";
-        sha256 = "sha256-MobgwhFQ1Ld7pFknsurSFAsN5v+vGbEFojTAYD/kI9c=";
-      };
-      meta.homepage = "https://github.com/neoclide/coc.nvim/";
-    };
-    settings = {
-      "coc.preferences.formatOnType" = false;
-      "coc.preferences.jumpCommand" = "edit";
-
-      "markdownlint.config" = {
-        "MD013" = false;
-      };
-
-      "eslint.enable" = true;
-      "eslint.run" = "onType";
-
-      "rust-client.disableRustup" = true;
-
-      languageserver = {
-        haskell = {
-          command = "haskell-language-server-wrapper";
-          args = ["--lsp"];
-          rootPatterns = [
-            "*.cabal"
-            "stack.yaml"
-            "cabal.project"
-            "package.yaml"
-            "hie.yaml"
-            ".git/"
-          ];
-          filetypes = ["haskell" "lhaskell" "hs" "lhs"];
-        };
-        racket = {
-          filetypes = ["racket"];
-          command = "racket -l racket-langserver";
-          rootPatterns = ["info.rkt" ".git/"];
-        };
-      };
-    };
-    pluginConfig = ''
-      let mapleader = "\<space>"
-
-      set hidden
-      set cmdheight=2
-      set updatetime=250
-      set signcolumn=yes
-
-      " Use <C-j> for both expand and jump (make expand higher priority.)
-      imap <C-j> <Plug>(coc-snippets-expand-jump)
-      " Use <leader>x for convert visual selected code to snippet
-      xmap <leader>x  <Plug>(coc-convert-snippet)
-
-      " use <tab> for trigger completion and navigate next complete item
-      function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-      endfunction
-
-      inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-
-      " Use <c-space> for trigger completion.
-      inoremap <silent><expr> <c-space> coc#refresh()
-
-      " Use <C-x><C-o> to complete 'word', 'emoji' and 'include' sources
-      imap <silent> <C-x><C-o> <Plug>(coc-complete-custom)
-
-      " close completion window on done
-      autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-      " Remap for rename current word
-      nmap <leader>rn <Plug>(coc-rename)
-
-      " Navigate diagnostics
-      nmap <silent> [g <Plug>(coc-diagnostic-prev)
-      nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-      " Remap keys for gotos
-      nmap <silent> gd <Plug>(coc-definition)
-      nmap <silent> gy <Plug>(coc-type-definition)
-      nmap <silent> gi <Plug>(coc-implementation)
-      nmap <silent> gr <Plug>(coc-references)
-
-      " Show signature help while editing
-      autocmd CursorHoldI * silent! call CocActionAsync('showSignatureHelp')
-      " Highlight symbol under cursor on CursorHold
-      autocmd CursorHold * silent call CocActionAsync('highlight')
-
-      " Remap for format selected region
-      vmap <leader>cf <Plug>(coc-format-selected)
-      nmap <leader>cf <Plug>(coc-format-selected)
-
-      " don't give |ins-completion-menu| messages.
-      set shortmess+=c
-
-      " Use K to show documentation in preview window
-      nnoremap <silent> K :call <SID>show_documentation()<CR>
-      function! s:show_documentation()
-        if (index(['vim','help'], &filetype) >= 0)
-          execute 'h '.expand('<cword>')
-        else
-          call CocAction('doHover')
-        endif
-      endfunction
-
-      " Use `:Format` for format current buffer
-      command! -nargs=0 Format :call CocAction('format')
-      " Use `:Fold` for fold current buffer
-      command! -nargs=? Fold :call CocAction('fold', <f-args>)
-
-      " enable symbol highlighting
-      autocmd CursorHold * silent call CocActionAsync('highlight')
-      " set symbol highlight color
-      highlight CocHighlightText cterm=bold ctermfg=Yellow gui=bold guifg=#ff8229
-
-      " Create mappings for function text object, requires document symbols feature of languageserver.
-      xmap if <Plug>(coc-funcobj-i)
-      xmap af <Plug>(coc-funcobj-a)
-      omap if <Plug>(coc-funcobj-i)
-      omap af <Plug>(coc-funcobj-a)
-
-      " use `:OR` for organize import of current buffer
-      command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-
-      " Add status line support, for integration with other plugin, checkout `:h coc-status`
-      set statusline^=%{coc#status()}%{get(b:,'coc_current_function',\'\')}
-
-      " Keymappings
-
-      " Remap for format selected region
-      xmap <leader>f <Plug>(coc-format-selected)
-      nmap <leader>f <Plug>(coc-format-selected)
-
-      nnoremap <silent> <leader>d  :<C-u>CocAction<CR>
-
-      nnoremap <silent> <leader>ca  :<C-u>CocList actions<CR>
-      nnoremap <silent> <leader>cv  :<C-u>CocList vimcommands<CR>
-      nnoremap <silent> <leader>cc  :<C-u>CocList cmdhistory<CR>
-      nnoremap <silent> <leader>cr  :<C-u>CocList mru<CR>
-    '';
-  };
 
   plugins =
     with pkgs;
@@ -192,10 +38,62 @@
         '';
       }
       { plugin = vim-trailing-whitespace; }
-      { plugin = vim-sneak; }
       { plugin = vim-abolish; }
-      { plugin = vim-speeddating; }
-      { plugin = tabular; }
+
+      { plugin = nvim-treesitter.withAllGrammars; }
+      { plugin = coq_nvim;
+        config = ''
+          let g:coq_settings = { 'xdg': v:true }
+        '';
+      }
+      { plugin = nvim-lspconfig;
+        config = ''
+          lua << EOF
+
+          local lsp = require'lspconfig'
+          local coq = require "coq"
+
+          local on_attach = function(client, bufnr)
+            vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+            local bufopts = { noremap=true, silent=true, buffer=bufnr }
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+            vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+            vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+            vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+            vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+            vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+          end
+
+          lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
+            on_attach=on_attach,
+            settings = {
+              ["rust-analyzer"] = {
+                imports = {
+                  granularity = {
+                    group = "module",
+                  },
+                  prefix = "self",
+                },
+                cargo = {
+                  buildScripts = {
+                    enable = true,
+                  },
+                },
+                procMacro = {
+                  enable = true
+                },
+              }
+            }
+          }))
+
+          EOF
+        '';
+      }
 
       # files
       { plugin = fzf-vim;
@@ -320,11 +218,8 @@
       # languages
       { plugin = vim-nix; }
       { plugin = vim-javascript; }
-      { plugin = vim-jsx-pretty; }
       { plugin = typescript-vim; }
-      { plugin = haskell-vim; }
-      { plugin = vim-go; }
-      { plugin = Jenkinsfile-vim-syntax; }
+      { plugin = vim-jsx-pretty; }
       { plugin = vim-mdx-js; }
       { plugin = vim-terraform; }
       { plugin = vim-racket; }

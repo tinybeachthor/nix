@@ -30,8 +30,8 @@ tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
 " Vim basic settings ---------------------- {{{
 
 set encoding=utf-8
-" Setup undofiles
 set nobackup undofile
+set signcolumn=yes:1
 " check for external file changes when editing stops
 au CursorHold,CursorHoldI * checktime
 " Set numbers, scrolloffset
@@ -145,13 +145,6 @@ nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 nnoremap <Leader>sr :%s//g<Left><Left>
 
 nnoremap Q @q
-
-" Shift view by 5 lines
-nnoremap <C-E> <C-E><C-E><C-E><C-E><C-E>
-inoremap <C-E> <C-O><C-E><C-O><C-E><C-O><C-E><C-O><C-E><C-O><C-E>
-nnoremap <C-Y> <C-Y><C-Y><C-Y><C-Y><C-Y>
-inoremap <C-Y> <C-O><C-Y><C-O><C-Y><C-O><C-Y><C-O><C-Y><C-O><C-Y>
-
 " }}}
 
 " Filetype specific---------------------- {{{
@@ -236,7 +229,6 @@ if filereadable(local_config)
 endif
 
 nnoremap <silent> <leader>ev :<C-U>e ~/.config/nvim/local.vim<CR>
-nnoremap <silent> <leader>ec :<C-U>e ~/.config/nvim/coc-settings.json<CR>
 
 " re-source configuration
 nnoremap <leader>sv :<C-U>source ~/.config/nvim/local.vim<CR>:nohlsearch<CR>

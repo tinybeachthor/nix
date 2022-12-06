@@ -1,5 +1,5 @@
 { nix-index-db, system }:
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   nix.trustedUsers = [ "root" "martin" ];
@@ -38,7 +38,7 @@
     };
   };
   home-manager.users = {
-    martin = { pkgs, ... }:
+    martin = { pkgs, ... }@inputs:
     let
       lock = pkgs.writeShellScriptBin "lock.sh"
         (builtins.readFile ./martin/lock.sh);
@@ -63,6 +63,18 @@
       programs = {
         nix-index.enable = true;
 
+        vscode = {
+          enable = true;
+          package = pkgs.vscodium;
+          extensions = with pkgs.vscode-extensions; [
+            asvetliakov.vscode-neovim
+          ];
+          userSettings = {
+            "vscode-neovim.neovimExecutablePaths.linux" = "${inputs.config.programs.neovim.finalPackage}/bin/nvim";
+            "window.zoomLevel" = 2;
+          };
+        };
+
         ssh = {
           enable = true;
           matchBlocks = {
@@ -73,7 +85,7 @@
           };
         };
 
-        i3status-rust = import ./martin/i3status-rust.nix { inherit config; };
+        i3status-rust = import ./martin/i3status-rust.nix { inherit config lib; };
 
         zsh = import ./martin/zsh.nix { inherit pkgs; };
         direnv = {
