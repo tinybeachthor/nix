@@ -154,8 +154,8 @@
         vlc
         rmapi
         shotwell
-
         zoom-us
+        blender
       ];
 
       home.stateVersion = "20.09";
