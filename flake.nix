@@ -1,9 +1,9 @@
 {
   inputs = {
-    flake-utils.url = github:numtide/flake-utils/master;
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
+    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     home-manager = {
-      url = github:rycee/home-manager/release-22.11;
+      url = "github:rycee/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-db = {
