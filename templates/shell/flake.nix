@@ -1,27 +1,20 @@
 {
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs;
+    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs";
   };
 
-  outputs = { self, nixpkgs }:
-    let
-      supportedSystems = [ "x86_64-linux" ];
-      forAllSystems = f:
-        nixpkgs.lib.genAttrs supportedSystems (system: f system);
-      nixpkgsFor = forAllSystems (system: import nixpkgs {
+  outputs = { self, flake-utils, nixpkgs }:
+    flake-utils.lib.eachSystem [ "x86_64-linux" ] (system: let
+      pkgs = import nixpkgs {
         inherit system;
         overlays = [ ];
-      });
-
+      };
     in {
-      devShell = forAllSystems (system: let
-        pkgs = nixpkgsFor.${system};
-      in
-        pkgs.mkShell {
-          buildInputs = with pkgs; [
-            git
-          ];
-        }
-      );
-    };
+      devShells.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          git
+        ];
+      };
+    });
 }
