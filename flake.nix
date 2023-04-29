@@ -81,6 +81,7 @@
               ./modules/sound.nix
               ./modules/fonts.nix
               ./modules/env.nix
+              ./modules/crosscompile-aarch64-linux.nix
 
               home-manager.nixosModules.home-manager
               (import ./users { inherit nix-index-db system; })
