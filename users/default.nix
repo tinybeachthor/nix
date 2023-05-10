@@ -2,7 +2,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  nix.trustedUsers = [ "root" "martin" ];
+  nix.settings.trusted-users = [ "root" "martin" ];
 
   security.sudo.execWheelOnly = true;
   security.sudo.wheelNeedsPassword = false;

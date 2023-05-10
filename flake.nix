@@ -54,7 +54,7 @@
               ./modules/i3.nix
               ./modules/brightness.nix
               ./modules/sound.nix
-              ./modules/fonts.nix
+              ./modules/xfonts.nix
               ./modules/env.nix
               ./modules/docker.nix
 
