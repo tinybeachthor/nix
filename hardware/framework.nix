@@ -70,6 +70,8 @@
     [ { device = "/dev/disk/by-uuid/96f0c15b-3627-4c94-ac60-4e14998393f8"; }
     ];
 
+  virtualisation.docker.storageDriver = "btrfs";
+
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 

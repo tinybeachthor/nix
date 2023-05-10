@@ -4,8 +4,17 @@
 {
   nix.trustedUsers = [ "root" "martin" ];
 
-  security.sudo.wheelNeedsPassword = false;
   security.sudo.execWheelOnly = true;
+  security.sudo.wheelNeedsPassword = false;
+
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+    thunar-dropbox-plugin
+    thunar-media-tags-plugin
+  ];
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
 
   # GPG
   programs.gnupg.agent.enable = true;
@@ -26,7 +35,7 @@
         "jackaudio"
         "video"
       ]
-      ++ (if (config.virtualisation.docker.enable == true) then ["docker"] else []);
+      ++ lib.optional (config.virtualisation.docker.enable && !config.virtualisation.docker.rootless.enable) "docker";
 
       home = "/home/martin";
       createHome = true;
@@ -144,7 +153,16 @@
 
         firefox
         chromium
+
         xfce.thunar
+        gvfs
+        webp-pixbuf-loader
+        poppler
+        nufraw-thumbnailer
+        f3d
+        freetype
+        libgsf
+
         xfce.ristretto
         spotify
 
