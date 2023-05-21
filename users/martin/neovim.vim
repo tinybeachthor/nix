@@ -3,10 +3,6 @@ set shell=/bin/sh
 let mapleader = "\<space>"
 let maplocalleader = "\<space>"
 
-" escapes
-imap jw <Esc>
-imap wj <Esc>
-
 " Clear all registers
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
