@@ -1,4 +1,4 @@
-{ nix-index-db, system }:
+{ system }:
 { config, pkgs, lib, ... }:
 
 {
@@ -51,14 +51,11 @@
     let
       lock = pkgs.writeShellScriptBin "lock.sh"
         (builtins.readFile ./martin/lock.sh);
-      nix-index-bin = nix-index-db.packages.${system}.default;
     in
     {
       xresources.properties = import ./martin/xresources.nix;
       xsession.windowManager.i3 = import ./martin/i3.nix { inherit config pkgs; };
       xdg.configFile."i3/lock.sh".source = "${lock}/bin/lock.sh";
-
-      home.file.".cache/nix-index/files".source = nix-index-bin;
 
       services = {
         udiskie = {
@@ -70,20 +67,6 @@
       };
 
       programs = {
-        nix-index.enable = true;
-
-        vscode = {
-          enable = true;
-          package = pkgs.vscodium;
-          extensions = with pkgs.vscode-extensions; [
-            asvetliakov.vscode-neovim
-          ];
-          userSettings = {
-            "vscode-neovim.neovimExecutablePaths.linux" = "${inputs.config.programs.neovim.finalPackage}/bin/nvim";
-            "window.zoomLevel" = 2;
-          };
-        };
-
         ssh = {
           enable = true;
           matchBlocks = {

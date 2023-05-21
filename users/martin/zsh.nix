@@ -33,8 +33,6 @@
     da=38;5;240:uu=38;5;250:\
     *.nix=38;5;228:*.md=31;1:\
     "
-
-    # powerline-go
   '';
 
   shellAliases = import ./aliases.nix;

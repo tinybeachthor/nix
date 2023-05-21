@@ -6,13 +6,9 @@
       url = "github:rycee/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-index-db = {
-      url = "github:usertam/nix-index-db/standalone/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, flake-utils, nixpkgs, home-manager, nix-index-db }:
+  outputs = { self, flake-utils, nixpkgs, home-manager }:
     flake-utils.lib.eachDefaultSystem (system: {
       packages = (import nixpkgs {
         inherit system;
@@ -59,7 +55,7 @@
               ./modules/docker.nix
 
               home-manager.nixosModules.home-manager
-              (import ./users { inherit nix-index-db system; })
+              (import ./users { inherit system; })
               ({
                 networking.hostName = "ALBATROSS";
                 time.timeZone       = "America/Los_Angeles";
@@ -85,7 +81,7 @@
               ./modules/docker-rootless.nix
 
               home-manager.nixosModules.home-manager
-              (import ./users { inherit nix-index-db system; })
+              (import ./users { inherit system; })
               ({
                 networking.hostName = "PELICAN";
                 time.timeZone       = "America/Los_Angeles";
