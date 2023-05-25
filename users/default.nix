@@ -79,17 +79,9 @@
 
         i3status-rust = import ./martin/i3status-rust.nix { inherit config lib; };
 
-        zsh = import ./martin/zsh.nix { inherit pkgs; };
-        direnv = {
-          enable = true;
-          enableZshIntegration = true;
-          nix-direnv.enable = true;
-        };
-        fzf = {
-          enable = true;
-          enableZshIntegration = true;
-          defaultCommand = "fd --type f --hidden --follow --exclude .git";
-        };
+        neovim = import ./martin/neovim.nix { inherit pkgs; };
+        git = import ./martin/git.nix { inherit pkgs; };
+        alacritty = import ./martin/alacritty.nix { inherit config pkgs; };
         powerline-go = {
           enable = true;
           settings = {
@@ -103,15 +95,18 @@
             "venv" "node" "terraform-workspace"
           ];
         };
-        neovim = import ./martin/neovim.nix { inherit pkgs; };
-        git = import ./martin/git.nix { inherit pkgs; };
-        gh = {
+
+        zsh = import ./martin/zsh.nix { inherit pkgs; };
+        direnv = {
           enable = true;
-          settings = {
-            gitProtocol = "ssh";
-          };
+          enableZshIntegration = true;
+          nix-direnv.enable = true;
         };
-        alacritty = import ./martin/alacritty.nix { inherit config pkgs; };
+        fzf = {
+          enable = true;
+          enableZshIntegration = true;
+          defaultCommand = "fd --type f --hidden --follow --exclude .git";
+        };
 
         neomutt = { enable = true; vimKeys = true; };
         mbsync = { enable = true; };

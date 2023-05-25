@@ -2,6 +2,7 @@
 
 {
   enable = true;
+  lfs.enable = true;
   package = pkgs.gitFull;
 
   userName = "Martin Toman";
