@@ -16,6 +16,8 @@
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
 
+  programs.zsh.enable = true;
+
   # GPG
   programs.gnupg.agent.enable = true;
 

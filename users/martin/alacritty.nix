@@ -32,10 +32,7 @@ let
         family = "Hack";
         style = "Bold";
       };
-      size =
-        if config.hardware.video.hidpi.enable
-        then 15
-        else 12;
+      size = 15;
       offset = {
         x = 0;
         y = 0;
@@ -97,7 +94,6 @@ let
     };
     live_config_reload = false;
     working_directory = "None";
-    alt_send_esc = true;
     debug = {
       render_timer = false;
       persistent_logging = false;

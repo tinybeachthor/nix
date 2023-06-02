@@ -18,10 +18,7 @@
     fonts = {
       names = [ "pango:DejaVu Sans Mono" "FontAwesome" ];
       style = "Bold Semi-Condensed";
-      size =
-        if config.hardware.video.hidpi.enable
-        then 13.0
-        else 11.0;
+      size = 14.0;
     };
     colors = {
       background = "#000000";

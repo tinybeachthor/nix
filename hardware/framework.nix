@@ -16,7 +16,6 @@
 
   boot.loader.grub = {
     enable = true;
-    version = 2;
     device = "nodev";
     efiSupport = true;
     enableCryptodisk = true;
@@ -71,9 +70,6 @@
     ];
 
   virtualisation.docker.storageDriver = "btrfs";
-
-  # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
 
   nix.settings.max-jobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
