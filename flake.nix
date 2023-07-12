@@ -50,9 +50,8 @@
               ./modules/i3.nix
               ./modules/brightness.nix
               ./modules/sound.nix
-              ./modules/xfonts.nix
+              ./modules/fonts.nix
               ./modules/env.nix
-              ./modules/docker.nix
 
               home-manager.nixosModules.home-manager
               (import ./users { inherit system; })
