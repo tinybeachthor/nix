@@ -6,7 +6,7 @@
     fontDir.enable = config.fonts.fontconfig.enable;
     enableGhostscriptFonts = config.fonts.fontconfig.enable;
 
-    fonts = lib.mkIf config.fonts.fontconfig.enable (with pkgs; [
+    packages = lib.mkIf config.fonts.fontconfig.enable (with pkgs; [
       corefonts
       terminus_font
       corefonts           # Microsoft free fonts

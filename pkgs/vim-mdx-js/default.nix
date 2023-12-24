@@ -1,6 +1,6 @@
-{ buildVimPluginFrom2Nix, fetchFromGitHub }:
+{ buildVimPlugin, fetchFromGitHub }:
 
-buildVimPluginFrom2Nix {
+buildVimPlugin {
   pname = "vim-mdx-js";
   version = "2019-03-04";
 

@@ -26,7 +26,7 @@
         unzip
 
         bat
-        exa
+        eza
         bash
         binutils
         coreutils

@@ -1,6 +1,6 @@
-{ buildVimPluginFrom2Nix, fetchFromGitHub }:
+{ buildVimPlugin, fetchFromGitHub }:
 
-buildVimPluginFrom2Nix rec {
+buildVimPlugin rec {
   pname = "vim-racket";
   version = "2020-06-24";
 

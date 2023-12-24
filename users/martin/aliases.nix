@@ -1,9 +1,9 @@
 {
 # general
-  l="exa --git --git-ignore --time-style iso --all --long -I '.git|.direnv|.vim'";
-  ls="exa --git --git-ignore --time-style iso";
-  ll="exa --git --time-style iso --all --long";
-  lll="exa --git --time-style iso --all --long --tree -I '.git|.direnv|.vim' --level=2";
+  l="eza --git --git-ignore --time-style iso --all --long -I '.git|.direnv|.vim'";
+  ls="eza --git --git-ignore --time-style iso";
+  ll="eza --git --time-style iso --all --long";
+  lll="eza --git --time-style iso --all --long --tree -I '.git|.direnv|.vim' --level=2";
 
   dr="direnv reload";
 

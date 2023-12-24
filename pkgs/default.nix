@@ -10,9 +10,9 @@ with pkgs;
   };
 
   vim-racket = callPackage ./vim-racket {
-    inherit (vimUtils) buildVimPluginFrom2Nix;
+    inherit (vimUtils) buildVimPlugin;
   };
   vim-mdx-js = callPackage ./vim-mdx-js {
-    inherit (vimUtils) buildVimPluginFrom2Nix;
+    inherit (vimUtils) buildVimPlugin;
   };
 }

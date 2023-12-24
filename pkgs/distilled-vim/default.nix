@@ -1,6 +1,6 @@
-{ buildVimPluginFrom2Nix, fetchFromGitHub }:
+{ buildVimPlugin, fetchFromGitHub }:
 
-buildVimPluginFrom2Nix {
+buildVimPlugin {
   pname = "distilled-vim";
   version = "2019-08-02";
 

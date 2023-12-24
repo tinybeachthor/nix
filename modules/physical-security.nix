@@ -5,8 +5,7 @@
     # usbguard - BadUSB protection
     usbguard = {
       enable = true;
-      # Non-GUI package
-      package = pkgs.usbguard-nox;
+      package = pkgs.usbguard;
     };
   };
 }
