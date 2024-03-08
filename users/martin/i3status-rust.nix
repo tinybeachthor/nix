@@ -65,7 +65,7 @@ in
       }
       {
         block = "net";
-        format = " $icon {$signal_strength $ssid|Wired} ";
+        format = " $icon {$signal_strength $ssid|Wired} via $device ";
       }
       {
         block = "battery";

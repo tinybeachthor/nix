@@ -12,6 +12,7 @@
     ../modules/ssd.nix
     ../modules/physical-security.nix
     ../modules/networking.nix
+    ../modules/warp.nix
   ];
 
   boot.loader.grub = {

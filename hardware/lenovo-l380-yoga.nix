@@ -15,6 +15,7 @@
     ../modules/systemd-boot.nix
     ../modules/physical-security.nix
     ../modules/networking.nix
+    ../modules/warp.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
