@@ -44,7 +44,7 @@
             ./modules/env.nix
 
             home-manager.nixosModules.home-manager
-            (import ./users { inherit system; })
+            ./users
             ({
               networking.hostName = "ALBATROSS";
               time.timeZone       = "America/Los_Angeles";
@@ -68,9 +68,10 @@
             ./modules/env.nix
             ./modules/crosscompile-aarch64-linux.nix
             ./modules/docker-rootless.nix
+            ./modules/virtual-box.nix
 
             home-manager.nixosModules.home-manager
-            (import ./users { inherit system; })
+            ./users
             ({
               networking.hostName = "PELICAN";
               time.timeZone       = "America/Los_Angeles";
