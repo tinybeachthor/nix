@@ -1,19 +1,19 @@
-{ ...}:
+{ ...
+}:
 
 {
   programs.light.enable = true;
-
   services.actkbd = {
     enable = true;
     bindings = [
       {
-        events = [ "key" ];
         keys = [ 224 ];
-        command = "/run/current-system/sw/bin/light -U 5";
+        events = [ "key" "rep" ];
+        command = "/run/current-system/sw/bin/light -T 0.7";
       }
       {
-        events = [ "key" ];
         keys = [ 225 ];
+        events = [ "key" "rep" ];
         command = "/run/current-system/sw/bin/light -A 5";
       }
     ];
