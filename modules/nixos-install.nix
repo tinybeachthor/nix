@@ -1,5 +1,6 @@
 { config
 , pkgs
+, lib
 , ...
 }:
 
@@ -8,6 +9,8 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+
+  isoImage.squashfsCompression = lib.mkDefault "gzip -Xcompression-level 1";
 
   environment = {
     systemPackages = with pkgs; [
