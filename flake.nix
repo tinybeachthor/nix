@@ -47,7 +47,6 @@
             ./users
             ({
               networking.hostName = "ALBATROSS";
-              time.timeZone       = "America/Los_Angeles";
             })
           ];
         };
@@ -74,7 +73,6 @@
             ./users
             ({
               networking.hostName = "PELICAN";
-              time.timeZone       = "America/Los_Angeles";
             })
           ];
         };
