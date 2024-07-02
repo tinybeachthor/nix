@@ -6,7 +6,7 @@
   package = pkgs.gitFull;
 
   userName = "Martin Toman";
-  userEmail = "toman.martin@live.com";
+  userEmail = "25009432+tinybeachthor@users.noreply.github.com";
   signing = null;
 
   ignores = [
