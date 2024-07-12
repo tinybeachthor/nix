@@ -1,9 +1,9 @@
 {
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     home-manager = {
-      url = "github:rycee/home-manager/release-23.11";
+      url = "github:rycee/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -23,8 +23,6 @@
             };
             overlays = map (flake: flake.overlays.default) flakes;
           };
-          nix.registry.nixpkgs.flake = nixpkgs;
-          nix.registry.pkgs.flake = self;
         };
       in {
         ALBATROSS = nixpkgs.lib.nixosSystem rec {
@@ -65,9 +63,9 @@
             ./modules/sound.nix
             ./modules/fonts.nix
             ./modules/env.nix
-            ./modules/crosscompile-aarch64-linux.nix
+            # ./modules/crosscompile-aarch64-linux.nix
             ./modules/docker-rootless.nix
-            ./modules/virtual-box.nix
+            # ./modules/virtual-box.nix
 
             home-manager.nixosModules.home-manager
             ./users

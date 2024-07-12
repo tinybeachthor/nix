@@ -17,7 +17,6 @@
         cloc
 
         cachix
-        nixfmt
 
         htop
 
