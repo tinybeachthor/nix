@@ -12,8 +12,6 @@ in {
   xsession.windowManager.i3 = import ./i3.nix { inherit pkgs; };
   xdg.configFile."i3/lock.sh".source = "${lock}/bin/lock.sh";
 
-  accounts.email.accounts = import ./email-accounts.nix { inherit pkgs; };
-
   services = {
     udiskie = {
       enable = true;
@@ -65,20 +63,10 @@ in {
       enableZshIntegration = true;
       defaultCommand = "fd --type f --hidden --follow --exclude .git";
     };
-
-    neomutt = { enable = true; vimKeys = true; };
-    mbsync = { enable = true; };
-    msmtp = { enable = true; };
-    notmuch = {
-      enable = true;
-      hooks = {
-        preNew = "mbsync --all";
-      };
-    };
   };
 
   home.packages = with pkgs; [
-    fd  # fzf source
+    fd
     pass
 
     gitAndTools.hub
@@ -97,15 +85,12 @@ in {
     f3d
     freetype
     libgsf
-
     xfce.ristretto
-    spotify
 
     libreoffice
     pdftk
     xournal
     vlc
-    rmapi
     shotwell
     zoom-us
     blender
