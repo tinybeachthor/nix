@@ -37,6 +37,14 @@ in {
     i3status-rust = import ./i3status-rust.nix { inherit config lib; };
 
     neovim = import ./neovim.nix { inherit pkgs; };
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        asvetliakov.vscode-neovim
+        rust-lang.rust-analyzer
+      ];
+    };
     git = import ./git.nix { inherit pkgs; };
     alacritty = import ./alacritty.nix { inherit config pkgs; };
     powerline-go = {
