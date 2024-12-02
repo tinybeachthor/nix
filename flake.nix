@@ -45,6 +45,10 @@
             ./users
             ({
               networking.hostName = "ALBATROSS";
+
+              # To make nix-index work
+              nix.channel.enable = true;
+              nix.nixPath = [ "nixpkgs=${nixpkgs.outPath}" ];
             })
           ];
         };

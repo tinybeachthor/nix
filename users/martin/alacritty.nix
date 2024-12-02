@@ -42,7 +42,6 @@ let
         y = 0;
       };
     };
-    draw_bold_text_with_bright_colors = true;
     colors = {
       primary = {
         background = "0x181818";
@@ -69,20 +68,19 @@ let
         white = "0xfdf6e3";
       };
       indexed_colors = [ ];
+      draw_bold_text_with_bright_colors = true;
     };
     bell = {
       duration = 0;
       animation = "EaseOutExpo";
       color = "0xffffff";
     };
-    mouse_bindings = [{
-      mouse = "Middle";
-      action = "PasteSelection";
-    }];
     mouse = {
-      double_click = { threshold = 300; };
-      triple_click = { threshold = 300; };
       hide_when_typing = true;
+      bindings = [{
+        mouse = "Middle";
+        action = "PasteSelection";
+      }];
     };
     selection = {
       semantic_escape_chars = '';│`|:"' ()[]{}<>'';
@@ -99,17 +97,13 @@ let
       persistent_logging = false;
       log_level = "Warn";
       print_events = false;
-      ref_test = false;
     };
 
-    key_bindings = [
+    keyboard.bindings = [
       { key = "Key0"; mods = "Control"; action = "ResetFontSize"; }
       { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
 
-      { key = "X"; mods = "Control"; chars = "\\x05\\x1b\\x7ffg\\x0d"; mode = "~Alt"; }
-
       { key = "L"; mods = "Control"; action = "ClearLogNotice"; }
-      { key = "L"; mods = "Control"; chars = "\\x0c"; }
     ];
   };
 
