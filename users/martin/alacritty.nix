@@ -2,6 +2,9 @@
 
 let
   settings = {
+    general = {
+      live_config_reload = false;
+    };
     env = { TERM = "xterm-256color"; };
     window = {
       dimensions = {
@@ -90,7 +93,6 @@ let
       style = "Block";
       unfocused_hollow = true;
     };
-    live_config_reload = false;
     working_directory = "None";
     debug = {
       render_timer = false;

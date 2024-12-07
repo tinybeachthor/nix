@@ -2,7 +2,7 @@
 
 {
   # Install the flakes edition
-  nix.package = pkgs.nixFlakes;
+  nix.package = pkgs.nixVersions.stable;
   # Enable the nix command and flakes
   # Keeps for nix-direnv garbage collection
   # Garbage collect if disk full

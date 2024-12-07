@@ -1,9 +1,9 @@
 {
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager = {
-      url = "github:rycee/home-manager/release-24.05";
+      url = "github:rycee/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
