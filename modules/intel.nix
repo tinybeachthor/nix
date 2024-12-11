@@ -17,7 +17,7 @@
 
     cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
-    opengl.extraPackages = with pkgs; [
+    graphics.extraPackages = with pkgs; [
       vaapiIntel
     ];
   };
