@@ -45,10 +45,6 @@
             ./users
             ({
               networking.hostName = "ALBATROSS";
-
-              # To make nix-index work
-              nix.channel.enable = true;
-              nix.nixPath = [ "nixpkgs=${nixpkgs.outPath}" ];
             })
           ];
         };
@@ -68,7 +64,7 @@
             ./modules/fonts.nix
             ./modules/env.nix
             # ./modules/crosscompile-aarch64-linux.nix
-            ./modules/docker-rootless.nix
+            # ./modules/docker-rootless.nix
             # ./modules/virtual-box.nix
 
             home-manager.nixosModules.home-manager
