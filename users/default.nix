@@ -45,6 +45,7 @@ in {
         "audio"
         "jackaudio"
         "video"
+        "dialout"
       ]
       ++ (lib.optional (cfgDocker.enable && !cfgDocker.rootless.enable) "docker")
       ++ (lib.optional (cfgVbox.host.enable) "vboxusers");
