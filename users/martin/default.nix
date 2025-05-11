@@ -102,6 +102,7 @@ in {
     shotwell
     zoom-us
     blender
+    simplescreenrecorder
   ];
 
   home.stateVersion = "20.09";
