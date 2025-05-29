@@ -5,6 +5,8 @@
   console.font       = "Lat2-Terminus16";
   console.keyMap     = "us";
 
+  programs.nix-ld.enable = true;
+
   # Add packages to environment
   environment = {
     systemPackages = with pkgs;
