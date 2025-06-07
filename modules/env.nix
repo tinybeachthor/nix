@@ -22,7 +22,6 @@
 
         htop
 
-        archiver
         zip
         unzip
 

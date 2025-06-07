@@ -7,7 +7,6 @@
 
   userName = "Martin Toman";
   userEmail = "25009432+tinybeachthor@users.noreply.github.com";
-  signing = null;
 
   ignores = [
     "Session.vim"

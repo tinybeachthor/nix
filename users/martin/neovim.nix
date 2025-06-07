@@ -128,10 +128,13 @@
           let g:netrw_winsize   = 20
           let g:netrw_banner    = 0
           let g:netrw_altv      = 1
-          let g:netrw_list_hide = netrw_gitignore#Hide() . '.*\.swp$,.*\.un\~$,.git/$'
         '';
       }
-      { plugin = vim-vinegar; }
+      { plugin = vim-vinegar;
+        config = ''
+          " let g:netrw_list_hide = netrw_gitignore#Hide() . '.*\.swp$,.*\.un\~$,.git/$'
+        '';
+      }
 
       # git
       { plugin = vim-fugitive; }

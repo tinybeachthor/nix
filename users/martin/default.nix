@@ -97,7 +97,7 @@ in {
 
     libreoffice
     pdftk
-    xournal
+    xournalpp
     vlc
     shotwell
     zoom-us

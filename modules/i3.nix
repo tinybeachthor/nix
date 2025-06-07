@@ -7,7 +7,7 @@
       enableCtrlAltBackspace = true;
 
       xkb = {
-        layout = config.console.keyMap;          # Use same keyMap as console
+        layout = config.console.keyMap;       # Use same keyMap as console
         options = "eurosign:e, ctrl:nocaps";  # CapsLock is Ctrl
       };
 
@@ -49,6 +49,8 @@
     # i3status-rust battery stats
     upower.enable = true;
   };
+
+  programs.i3lock.enable = true;
 
   environment.systemPackages = with pkgs; [
     xorg.xhost  # manage access to x sesssion (e.g. allow access from docker)
