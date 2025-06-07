@@ -34,7 +34,7 @@ in {
   # Location
   location.provider = "geoclue2";
 
-  services.automatic-timezoned.enable = true;
+  # services.automatic-timezoned.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
